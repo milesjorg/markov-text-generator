@@ -1,6 +1,5 @@
 import string
 import random
-import os
 from graph import Graph, Vertex
 
 def get_words_from_txt(text_path):
