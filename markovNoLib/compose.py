@@ -38,7 +38,7 @@ def compose(g, words, length=50):
     return compostion
 
 def main():
-    words = get_words_from_txt("frankenstein.txt")
+    words = get_words_from_txt("texts/frankenstein.txt")
     g = makeGraph(words)
 
     composition = compose(g, words, 30)
