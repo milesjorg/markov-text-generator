@@ -25,7 +25,7 @@ class Vertex:
             self.neighbor_weights.append(weight)
 
     def next_word(self):
-        random.choices(self.neighbors, weights = self.neighbor_weights)[0]
+        return random.choices(self.neighbors, weights = self.neighbor_weights)[0]
 
 
 class Graph:
@@ -39,13 +39,13 @@ class Graph:
         self.vertices[value] = Vertex(value)
 
     def get_vertex(self, value):
-        if value not in self.vertices.values():
+        if value not in self.vertices:
             self.add_vertex(value)
         return self.vertices[value]
 
     def get_next_word(self, current_vertex):
         return self.vertices[current_vertex.value].next_word()
 
-    def generate_probablilty_mappings(self):
+    def generate_probability_mappings(self):
         for vertex in self.vertices.values():
             vertex.get_probability_map()

@@ -3,8 +3,8 @@ import random
 from graph import Graph, Vertex
 
 def get_words_from_txt(text_path):
-    with open(text_path, 'r', encoding="utf-8") as f:
-        text = f.read()
+    with open(text_path, 'rb') as f:
+        text = f.read().decode("utf-8")
 
         text = ' '.join(text.split())
         text = text.lower()
@@ -24,13 +24,13 @@ def makeGraph(words):
             previous_word.increment_edge(word_vertex)
 
         previous_word = word_vertex
-    g.generate_probablilty_mappings()
+    g.generate_probability_mappings()
 
     return g
 
 def compose(g, words, length=50):
     compostion = []
-    word = g.get_vertex(random.choices(words))
+    word = g.get_vertex(random.choice(words))
     for _ in range(length):
         compostion.append(word.value)
         word = g.get_next_word(word)
@@ -38,10 +38,10 @@ def compose(g, words, length=50):
     return compostion
 
 def main():
-    words = get_words_from_txt("harrypotter.txt")
+    words = get_words_from_txt("frankenstein.txt")
     g = makeGraph(words)
 
-    composition = compose(g, words, 100)
+    composition = compose(g, words, 30)
     return ' '.join(composition)
 
 if __name__ == '__main__':
